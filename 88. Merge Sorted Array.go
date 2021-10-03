@@ -49,12 +49,12 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 
 	fmt.Println(nums1)
 }
-func main() {
-	num1 := []int{0, 0, 3, 0, 0, 0, 0, 0, 0}
-	var m int = 3
-	num2 := []int{-1, 1, 1, 1, 2, 3}
-	var n int = 6
+// func main() {
+// 	num1 := []int{0, 0, 3, 0, 0, 0, 0, 0, 0}
+// 	var m int = 3
+// 	num2 := []int{-1, 1, 1, 1, 2, 3}
+// 	var n int = 6
 
-	merge(num1, m, num2, n)
+// 	merge(num1, m, num2, n)
 
-}
+// }
