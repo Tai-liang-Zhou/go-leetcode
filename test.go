@@ -1,19 +1,23 @@
 package main
 
-// func main() {
-// 	categories := make(map[string][]string)
+// func main (){
 
-// 	categories["category1"] = append(categories["category1"], "product 1.1")
-// 	categories["category1"] = append(categories["category1"], "product 1.2")
-// 	categories["category1"] = append(categories["category1"], "product 1.3", "product 1.4")
+// 	// 1-2-3-4- 5-4-3-2-1
 
-// 	categories["category2"] = append(categories["category2"], "product 2.1", "product 2.1")
-// 	// fmt.Println(categories)
+// 	var m = 5
+// 	input := make([]int,0)
 
-// 	for _, x := range categories {
-// 		for _, value := range x {
-// 			fmt.Println(value)
-// 		}
-
+// 	for i:=1;i<=5;i++{
+// 		input = append(input, i)
 // 	}
+
+// 	for j:=m-1;j>=1;j--{
+// 		input = append(input, j)
+// 	}
+
+// 	output1 := input[len(input)%m]
+// 	output2 := input[len(input)%m+1]
+
+// 	fmt.Println(input,output1,output2)
+
 // }

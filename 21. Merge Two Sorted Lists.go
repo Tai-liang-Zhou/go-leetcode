@@ -34,17 +34,15 @@ type ListNode struct {
 // listPrinter(list &ListNode){
 
 // }
-func main(){
+// func main(){
 
-	l1 := &ListNode{nil,1}
-	l1.Next = &ListNode{nil,2}
-	l1.Next.Next = &ListNode{nil,4}
+// 	l1 := &ListNode{nil,1}
+// 	l1.Next = &ListNode{nil,2}
+// 	l1.Next.Next = &ListNode{nil,4}
 
-	l2 := &ListNode{nil,1}
-	l2.Next = &ListNode{nil,3}
-	l2.Next.Next = &ListNode{nil,4}
-	mergeTwoLists(l1, l2)
+// 	l2 := &ListNode{nil,1}
+// 	l2.Next = &ListNode{nil,3}
+// 	l2.Next.Next = &ListNode{nil,4}
+// 	mergeTwoLists(l1, l2)
 
-	
-
-}
+// }
