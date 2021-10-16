@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func longestPalindrome(s string)string{
 	if len(s) < 2 {
 		return s
@@ -31,10 +29,10 @@ func maxPaildrome(s string, left, right  int, max string)string{
 	return max
 }
 
-func main(){
-	var test1 string = "babad"
+// func main(){
+// 	var test1 string = "babad"
 
-	results := longestPalindrome(test1)
-	fmt.Println(results)
+// 	results := longestPalindrome(test1)
+// 	fmt.Println(results)
 
-}
+// }
