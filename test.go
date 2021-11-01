@@ -1,23 +1,157 @@
 package main
 
-// func main (){
+import (
+	"fmt"
+	"strings"
+)
 
-// 	// 1-2-3-4- 5-4-3-2-1
+type Graph struct {
+	adjacency map[string][]string
+}
 
-// 	var m = 5
-// 	input := make([]int,0)
+func NewGraph() Graph {
+	return Graph{
+		adjacency: make(map[string][]string),
+	}
+}
 
-// 	for i:=1;i<=5;i++{
-// 		input = append(input, i)
-// 	}
+func (g *Graph) AddVertex(vertex string) bool {
+	if _, ok := g.adjacency[vertex]; ok {
+		fmt.Printf("vertex %v already exists\n", vertex)
+		return false
+	}
+	g.adjacency[vertex] = []string{}
+	return true
+}
 
-// 	for j:=m-1;j>=1;j--{
-// 		input = append(input, j)
-// 	}
+func (g *Graph) AddEdge(vertex, node string) bool {
+	if _, ok := g.adjacency[vertex]; !ok {
+		fmt.Printf("vertex %v does not exists\n", vertex)
+		return false
+	}
 
-// 	output1 := input[len(input)%m]
-// 	output2 := input[len(input)%m+1]
+	if ok := contains(g.adjacency[vertex], node); ok {
+		fmt.Printf("node %v already exists\n", node)
+		return false
+	}
 
-// 	fmt.Println(input,output1,output2)
+	g.adjacency[vertex] = append(g.adjacency[vertex], node)
+	return true
 
-// }
+}
+
+func contains(slice []string, item string) bool {
+	set := make(map[string]struct{}, len(slice))
+	for _, s := range slice {
+		set[s] = struct{}{}
+	}
+	_, ok := set[item]
+
+	return ok
+
+}
+
+func (g Graph) createVisited() map[string]bool {
+	visited := make(map[string]bool, len(g.adjacency))
+	for key := range g.adjacency {
+		visited[key] = false
+	}
+
+	return visited
+}
+
+func (g Graph) BFS(startingNode string) {
+	visited := g.createVisited()
+	var q []string
+
+	visited[startingNode] = true
+	q = append(q, startingNode)
+
+	for len(q) > 0 {
+		var current string
+		current, q = q[0], q[1:]
+		fmt.Println("BFS", current)
+
+		for _, node := range g.adjacency[current] {
+			if !visited[node] {
+				q = append(q, node)
+				visited[node] = true
+			}
+		}
+	}
+}
+
+func (g Graph) DFS(startingNode string) {
+	visited := g.createVisited()
+	g.dfsRecursive(startingNode, visited)
+
+}
+
+func (g Graph) dfsRecursive(startingNode string, visited map[string]bool) {
+	visited[startingNode] = true
+	fmt.Println("DFS", startingNode)
+	for _, node := range g.adjacency[startingNode] {
+		if !visited[node] {
+			g.dfsRecursive(node, visited)
+		}
+	}
+}
+
+func (g Graph) CreatePath(firstNode, secondNdoe string) bool {
+	visited := g.createVisited()
+	var (
+		path []string
+		q    []string
+	)
+	q = append(q, firstNode)
+	visited[firstNode] = true
+	for len(q) > 0 {
+		var currentNode string
+		currentNode, q = q[0], q[1:]
+		path = append(path, currentNode)
+		edges := g.adjacency[currentNode]
+		if contains(edges, secondNdoe) {
+			path = append(path, secondNdoe)
+			fmt.Println(strings.Join(path, "->"))
+			return true
+		}
+
+		for _, node := range g.adjacency[currentNode] {
+			if !visited[node] {
+				visited[node] = true
+				q = append(q, node)
+			}
+		}
+
+	}
+	fmt.Println("no link found")
+	return false
+
+}
+
+func main() {
+	fmt.Println("GoLang, Graph DFS and BFS implementation")
+	fmt.Println("DFS : Depth First Search")
+	fmt.Println("BFS : Breadth First Search")
+
+	g := NewGraph()
+
+	g.AddVertex("B")
+	g.AddVertex("C")
+	g.AddVertex("D")
+	g.AddVertex("A")
+	g.AddVertex("E")
+	g.AddVertex("F")
+
+	g.AddEdge("A", "B")
+	g.AddEdge("B", "A")
+	g.AddEdge("C", "B")
+	g.AddEdge("C", "D")
+	g.AddEdge("D", "C")
+	g.AddEdge("D", "A")
+	g.AddEdge("D", "E")
+	g.AddEdge("E", "F")
+
+	g.BFS("C")
+	g.CreatePath("C", "F")
+}
