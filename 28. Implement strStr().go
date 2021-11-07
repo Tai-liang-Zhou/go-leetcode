@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func strStr(haystack string, needle string) int {
 
 	if len(needle) == 0{return 0}
@@ -24,12 +22,12 @@ func strStr(haystack string, needle string) int {
 }
 
 
-func main()  {
-	var string1 string = "mississippi"
+// func main()  {
+// 	var string1 string = "mississippi"
 
-	var string2 string = "issipi"
+// 	var string2 string = "issipi"
 
-	output := strStr(string1, string2)
+// 	output := strStr(string1, string2)
 
-	fmt.Println(output)
-}
+// 	fmt.Println(output)
+// }
