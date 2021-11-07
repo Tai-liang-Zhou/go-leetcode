@@ -1,45 +1,45 @@
-package main
+// package main
 
-import (
-	"fmt"
-)
+// import (
+// 	"fmt"
+// )
 
-// Definition for a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+// // Definition for a binary tree node.
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
 
-//
-type BTree struct {
-	Root *TreeNode
-}
+// //
+// type BTree struct {
+// 	Root *TreeNode
+// }
 
-func InoderTraveral(root *TreeNode) []int {
-	var xs []int
-	if root != nil {
-		xs = append(xs, InoderTraveral(root.Left)...)
-		xs = append(xs, root.Val)
-		xs = append(xs, InoderTraveral(root.Right)...)
-		fmt.Println(xs)
-	}
-	return xs
-}
+// func InoderTraveral(root *TreeNode) []int {
+// 	var xs []int
+// 	if root != nil {
+// 		xs = append(xs, InoderTraveral(root.Left)...)
+// 		xs = append(xs, root.Val)
+// 		xs = append(xs, InoderTraveral(root.Right)...)
+// 		fmt.Println(xs)
+// 	}
+// 	return xs
+// }
 
-func InertTreeNode(root *TreeNode, value int) *TreeNode {
-	if root == nil {
-		return &TreeNode{value, nil, nil}
-	}
+// func InertTreeNode(root *TreeNode, value int) *TreeNode {
+// 	if root == nil {
+// 		return &TreeNode{value, nil, nil}
+// 	}
 
-	if root.Val > value {
-		root.Left = InertTreeNode(root.Left, value)
-	} else {
-		root.Right = InertTreeNode(root.Right, value)
-	}
+// 	if root.Val > value {
+// 		root.Left = InertTreeNode(root.Left, value)
+// 	} else {
+// 		root.Right = InertTreeNode(root.Right, value)
+// 	}
 
-	return root
-}
+// 	return root
+// }
 
 // func main() {
 // 	t := &BTree{nil}
