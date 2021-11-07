@@ -50,7 +50,6 @@ func contains(slice []string, item string) bool {
 	return ok
 
 }
-
 func (g Graph) createVisited() map[string]bool {
 	visited := make(map[string]bool, len(g.adjacency))
 	for key := range g.adjacency {
