@@ -40,25 +40,6 @@ func (g *Graph) AddEdge(vertex, node string) bool {
 
 }
 
-func contains(slice []string, item string) bool {
-	set := make(map[string]struct{}, len(slice))
-	for _, s := range slice {
-		set[s] = struct{}{}
-	}
-	_, ok := set[item]
-
-	return ok
-
-}
-func (g Graph) createVisited() map[string]bool {
-	visited := make(map[string]bool, len(g.adjacency))
-	for key := range g.adjacency {
-		visited[key] = false
-	}
-
-	return visited
-}
-
 func (g Graph) BFS(startingNode string) {
 	visited := g.createVisited()
 	var q []string
@@ -70,7 +51,6 @@ func (g Graph) BFS(startingNode string) {
 		var current string
 		current, q = q[0], q[1:]
 		fmt.Println("BFS", current)
-
 		for _, node := range g.adjacency[current] {
 			if !visited[node] {
 				q = append(q, node)
@@ -83,7 +63,6 @@ func (g Graph) BFS(startingNode string) {
 func (g Graph) DFS(startingNode string) {
 	visited := g.createVisited()
 	g.dfsRecursive(startingNode, visited)
-
 }
 
 func (g Graph) dfsRecursive(startingNode string, visited map[string]bool) {
@@ -96,7 +75,7 @@ func (g Graph) dfsRecursive(startingNode string, visited map[string]bool) {
 	}
 }
 
-func (g Graph) CreatePath(firstNode, secondNdoe string) bool {
+func (g Graph) CreatePath(firstNode, secondNode string) bool {
 	visited := g.createVisited()
 	var (
 		path []string
@@ -109,8 +88,8 @@ func (g Graph) CreatePath(firstNode, secondNdoe string) bool {
 		currentNode, q = q[0], q[1:]
 		path = append(path, currentNode)
 		edges := g.adjacency[currentNode]
-		if contains(edges, secondNdoe) {
-			path = append(path, secondNdoe)
+		if contains(edges, secondNode) {
+			path = append(path, secondNode)
 			fmt.Println(strings.Join(path, "->"))
 			return true
 		}
@@ -121,36 +100,25 @@ func (g Graph) CreatePath(firstNode, secondNdoe string) bool {
 				q = append(q, node)
 			}
 		}
-
 	}
 	fmt.Println("no link found")
 	return false
-
 }
 
-func main() {
-	fmt.Println("GoLang, Graph DFS and BFS implementation")
-	fmt.Println("DFS : Depth First Search")
-	fmt.Println("BFS : Breadth First Search")
+func (g Graph) createVisited() map[string]bool {
+	visited := make(map[string]bool, len(g.adjacency))
+	for key := range g.adjacency {
+		visited[key] = false
+	}
+	return visited
+}
 
-	g := NewGraph()
+func contains(slice []string, item string) bool {
+	set := make(map[string]struct{}, len(slice))
+	for _, s := range slice {
+		set[s] = struct{}{}
+	}
 
-	g.AddVertex("B")
-	g.AddVertex("C")
-	g.AddVertex("D")
-	g.AddVertex("A")
-	g.AddVertex("E")
-	g.AddVertex("F")
-
-	g.AddEdge("A", "B")
-	g.AddEdge("B", "A")
-	g.AddEdge("C", "B")
-	g.AddEdge("C", "D")
-	g.AddEdge("D", "C")
-	g.AddEdge("D", "A")
-	g.AddEdge("D", "E")
-	g.AddEdge("E", "F")
-
-	g.BFS("C")
-	g.CreatePath("C", "F")
+	_, ok := set[item]
+	return ok
 }

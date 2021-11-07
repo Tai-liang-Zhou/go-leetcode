@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func getAbsPath()string{
+func getAbsPath() string {
 
 	ex, err := os.Executable()
 	if err != nil {
@@ -21,7 +21,7 @@ func getAbsPath()string{
 	return exePath
 }
 
-func getWorkingDirPath()string{
+func getWorkingDirPath() string {
 	var abPath string
 	_, filename, _, ok := runtime.Caller(0)
 	if ok {
@@ -31,8 +31,8 @@ func getWorkingDirPath()string{
 }
 
 func etCurrentAbPath() string {
-	dir := getAbsPath() // 執行黨絕對路徑
-	tmpDir :=os.TempDir() // run go 產出的Temp 資料夾位置
+	dir := getAbsPath()    // 執行黨絕對路徑
+	tmpDir := os.TempDir() // run go 產出的Temp 資料夾位置
 	// fmt.Println(tmpDir)
 	if strings.Contains(dir, tmpDir) {
 		return getWorkingDirPath()
