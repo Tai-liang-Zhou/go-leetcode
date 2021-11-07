@@ -5,37 +5,14 @@ import (
 	"strings"
 )
 
-// func main() {
-// 	fmt.Println("GoLang, Graph DFS and BFS implementation")
-// 	fmt.Println("DFS : Depth First Search")
-// 	fmt.Println("BFS : Breadth First Search")
-
-// 	g := NewGraph()
-
-// 	g.AddVertex("ajinkya")
-// 	g.AddVertex("francesc")
-// 	g.AddVertex("manish")
-// 	g.AddVertex("albert")
-
-// 	g.AddEdge("albert", "ajinkya")
-// 	g.AddEdge("ajinkya", "albert")
-// 	g.AddEdge("francesc", "ajinkya")
-// 	g.AddEdge("francesc", "manish")
-// 	g.AddEdge("manish", "francesc")
-// 	g.AddEdge("manish", "albert")
-
-// 	g.DFS("francesc")
-// 	g.CreatePath("francesc", "albert")
-// }
+type Graph struct {
+	adjacency map[string][]string
+}
 
 func NewGraph() Graph {
 	return Graph{
 		adjacency: make(map[string][]string),
 	}
-}
-
-type Graph struct {
-	adjacency map[string][]string
 }
 
 func (g *Graph) AddVertex(vertex string) bool {
@@ -52,6 +29,7 @@ func (g *Graph) AddEdge(vertex, node string) bool {
 		fmt.Printf("vertex %v does not exists\n", vertex)
 		return false
 	}
+
 	if ok := contains(g.adjacency[vertex], node); ok {
 		fmt.Printf("node %v already exists\n", node)
 		return false
@@ -59,6 +37,7 @@ func (g *Graph) AddEdge(vertex, node string) bool {
 
 	g.adjacency[vertex] = append(g.adjacency[vertex], node)
 	return true
+
 }
 
 func (g Graph) BFS(startingNode string) {
@@ -104,7 +83,6 @@ func (g Graph) CreatePath(firstNode, secondNode string) bool {
 	)
 	q = append(q, firstNode)
 	visited[firstNode] = true
-
 	for len(q) > 0 {
 		var currentNode string
 		currentNode, q = q[0], q[1:]
