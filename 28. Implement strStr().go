@@ -35,8 +35,4 @@ func strStr(haystack string, needle string) int {
 // 	output := strStr(string1, string2)
 
 // 	fmt.Println(output)
-<<<<<<< HEAD
 // }
-=======
-// }
->>>>>>> 3e628df1926e5b6f9990151ecc6131225bb56a89

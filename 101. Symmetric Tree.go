@@ -1,9 +1,9 @@
 package main
 
 type TreeNode struct {
-	val   int
-	left  *TreeNode
-	right *TreeNode
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
 func isSemmetric(root *TreeNode) bool {
@@ -11,7 +11,7 @@ func isSemmetric(root *TreeNode) bool {
 		return false
 	}
 
-	return visite(root.left, root.right)
+	return visite(root.Left, root.Right)
 }
 
 func visite(root1 *TreeNode, root2 *TreeNode) bool {
@@ -23,13 +23,13 @@ func visite(root1 *TreeNode, root2 *TreeNode) bool {
 		return false
 	}
 
-	if root1.val != root2.val {
+	if root1.Val != root2.Val {
 		return false
 	}
 
-	return visite(root1.right, root2.left) && visite(root1.left, root2.right)
+	return visite(root1.Right, root2.Left) && visite(root1.Left, root2.Right)
 }
 
-func main() {
+// func main() {
 
-}
+// }
