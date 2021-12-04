@@ -48,7 +48,7 @@ func hammingDistance(x int, y int) int {
 	return c
 }
 
-func main() {
+// func main() {
 
-	fmt.Println(hammingDistance(1, 4))
-}
+// 	fmt.Println(hammingDistance(1, 4))
+// }

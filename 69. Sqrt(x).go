@@ -35,6 +35,6 @@ func mySqrt(x int) int {
 
 }
 
-func main() {
-	fmt.Println(mySqrt(8))
-}
+// func main() {
+// 	fmt.Println(mySqrt(8))
+// }
